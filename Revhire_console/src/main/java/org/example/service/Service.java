@@ -25,6 +25,7 @@ public class Service {
     }
 
     public boolean validateUser(String vemail,String vpassword){
+
         return dao.validateUser(vemail,vpassword);
     }
 
@@ -33,11 +34,17 @@ public class Service {
     }
 
     public boolean isValidpassword(String validpassword) {
+
         return dao.isValidpassword(validpassword);
     }
 
     public boolean isValidemail(String validemail){
+
         return dao.isValidemail(validemail);
+    }
+
+    public boolean isValidusername(String validusername){
+        return dao.isValidusername(validusername);
     }
 
 }

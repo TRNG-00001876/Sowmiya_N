@@ -11,4 +11,5 @@ public interface Dao {
     boolean validateemployee(String vempemail,String vemppassword);
     boolean isValidpassword(String validpassword);
     boolean isValidemail(String validemail);
+    boolean isValidusername(String validusername);
 }

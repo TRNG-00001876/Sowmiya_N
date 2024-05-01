@@ -1,25 +1,16 @@
 package org.example.model;
 
 public class Useregister {
-    private int Userid;
     private String Username;
     private String Password;
     private String Email;
 
-    public Useregister( int Userid,String Username, String Password,String Email) {
-        this.Userid=Userid;
+    public Useregister( String Username, String Password,String Email) {
         this.Username = Username;
         this.Password = Password;
         this.Email= Email;
     }
 
-    public int getId() {
-        return Userid;
-    }
-
-    public void setId(int id) {
-        this.Userid = Userid;
-    }
 
     public String getUsername() {
         return Username;

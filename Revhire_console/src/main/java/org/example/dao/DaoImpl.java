@@ -29,8 +29,7 @@ public class DaoImpl implements Dao {
     @Override
     public void userDetails(Useregister useregister) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO  jobSeeker(UserId,Username,Password,Email) VALUES (?,?, ?, ?)");
-            preparedStatement.setInt(1,useregister.getId());
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO  jobSeeker(Username,Password,Email) VALUES (?, ?, ?)");
             preparedStatement.setString(2, useregister.getUsername());
             preparedStatement.setString(3, useregister.getPassword());
             preparedStatement.setString(4, useregister.getEmail());
@@ -43,8 +42,7 @@ public class DaoImpl implements Dao {
     @Override
     public void jobDetails(Jobposting jobposting) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO  jobposting(Empid,Compname,Comploc,Jobskill,Expneed) VALUES (?,?, ?, ?,?)");
-            preparedStatement.setInt(1, jobposting.getEmpid());
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO  jobposting(Compname,Comploc,Jobskill,Expneed) VALUES (?,?, ?, ?)");
             preparedStatement.setString(2, jobposting.getCompname());
             preparedStatement.setString(3, jobposting.getComploc());
             preparedStatement.setString(4, jobposting.getJobskill());
@@ -58,11 +56,10 @@ public class DaoImpl implements Dao {
     @Override
     public void employeeDetails(Employeereg employeereg) {
         try{
-            PreparedStatement preparedStatement=connection.prepareStatement("INSERT INTO Employees(empname,emppassword,empemail,empphno) VALUES (?,?, ?, ?)");
+            PreparedStatement preparedStatement=connection.prepareStatement("INSERT INTO Employees(empname,emppassword,empemail) VALUES (?,?, ?)");
             preparedStatement.setString(1,employeereg.getEmpname());
             preparedStatement.setString(2,employeereg.getEmppassword());
             preparedStatement.setString(3,employeereg.getEmpemail());
-            preparedStatement.setString(4,employeereg.getEmpphno());
             preparedStatement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
@@ -73,13 +70,13 @@ public class DaoImpl implements Dao {
     public boolean validateUser(String vemail,String vpassword) {
         try{
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM jobseeker WHERE Password=? AND Email=?");
-            preparedStatement.setString(2,vpassword);
             preparedStatement.setString(1,vemail);
+            preparedStatement.setString(2,vpassword);
             ResultSet resultSet=preparedStatement.executeQuery();
             if(resultSet.next())
             {
-                String cvpassword=resultSet.getString("vpassword");
                 String cvemail=resultSet.getString("vemail");
+                String cvpassword=resultSet.getString("vpassword");
                 if(vemail==cvemail && vpassword==cvpassword)
                 {
                     return true;
@@ -108,11 +105,15 @@ public class DaoImpl implements Dao {
 
     @Override
     public boolean isValidemail(String validemail){
-        String emailpattern = "^[a-zA-Z0-9_]+@gmail\\\\.com$";
+        String emailpattern = "^[a-zA-Z0-9._%+-]+@gmail.com$";
         return validemail.matches(emailpattern);
     }
 
-
+    @Override
+    public boolean isValidusername(String validusername){
+        String usernamepattern = "^[A-Za-z]{2,19}$";
+        return validusername.matches(usernamepattern);
+    }
 
     @Override
     public boolean validateemployee(String vempemail,String vemppassword) {
@@ -123,16 +124,13 @@ public class DaoImpl implements Dao {
             ResultSet resultSet=preparedStatement.executeQuery();
             if(resultSet.next())
             {
-                String one=resultSet.getString("vpassword");
                 String two=resultSet.getString("vemail");
+                String one=resultSet.getString("vpassword");
                 if(vemppassword==one && vempemail==two)
                 {
                     return true;
                 }
                 return true;
-            }
-            else {
-                System.out.println("password is not matched and no employee found ,register again");
             }
         }
         catch (SQLException e){
