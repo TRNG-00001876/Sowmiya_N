@@ -69,19 +69,7 @@ public class Service {
     }
 
 
-    //employee crud
 
-    public boolean addEmployee(Employeereg employee) {
-        return dao.addEmployee(employee);
-    }
-
-    public boolean updateEmployee(Employeereg employee) {
-        return dao.updateEmployee(employee);
-    }
-
-    public boolean deleteEmployee(String email) {
-        return dao.deleteEmployee(email);
-    }
 
 
 }

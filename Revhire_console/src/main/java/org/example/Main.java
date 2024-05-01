@@ -216,67 +216,11 @@ public class Main {
                                     boolean exitEmployeeCrud = true;
                                     while (exitEmployeeCrud) {
                                         System.out.println("***********");
-                                        System.out.println("1) Employee CRUD");
-                                        System.out.println("2) Job Postings");
-                                        System.out.println("3) Exit");
+                                        System.out.println("1) Job Postings");
+                                        System.out.println("2) Exit");
                                         int option = scanner.nextInt();
                                         switch (option) {
                                             case 1:
-                                                // Employee CRUD operations
-                                                boolean exitEmployeeCrudCase = false;
-                                                while (!exitEmployeeCrudCase) {
-                                                    System.out.println("Employee CRUD Operations");
-                                                    System.out.println("1) Add Employee");
-                                                    System.out.println("2) Update Employee");
-                                                    System.out.println("3) Delete Employee");
-                                                    System.out.println("4) Exit");
-                                                    int employeeChoice = scanner.nextInt();
-                                                    scanner.nextLine(); // Consume newline character
-                                                    switch (employeeChoice) {
-                                                        case 1:
-                                                            // Add Employee
-                                                            scanner.nextLine(); // Consume newline character
-                                                            System.out.println("Enter employee name: ");
-                                                            String empName = scanner.nextLine();
-                                                            System.out.println("Enter employee email: ");
-                                                            String empEmail = scanner.nextLine();
-                                                            System.out.println("Enter employee password: ");
-                                                            String empPassword = scanner.nextLine();
-                                                            Employeereg newEmployee = new Employeereg(empName, empPassword, empEmail);
-                                                            service.addEmployee(newEmployee);
-                                                            System.out.println("Employee added successfully!");
-                                                            break;
-                                                        case 2:
-                                                            // Update Employee
-                                                            scanner.nextLine(); // Consume newline character
-                                                            System.out.println("Enter employee email to update: ");
-                                                            String empEmailToUpdate = scanner.nextLine();
-                                                            System.out.println("Enter new employee name: ");
-                                                            String newEmpName = scanner.nextLine();
-                                                            System.out.println("Enter new employee password: ");
-                                                            String newEmpPassword = scanner.nextLine();
-                                                            Employeereg updatedEmployee = new Employeereg(newEmpName, newEmpPassword, empEmailToUpdate);
-                                                            service.updateEmployee(updatedEmployee);
-                                                            System.out.println("Employee updated successfully!");
-                                                            break;
-                                                        case 3:
-                                                            // Delete Employee
-                                                            scanner.nextLine(); // Consume newline character
-                                                            System.out.println("Enter employee email to delete: ");
-                                                            String empEmailToDelete = scanner.nextLine();
-                                                            service.deleteEmployee(empEmailToDelete);
-                                                            System.out.println("Employee deleted successfully!");
-                                                            break;
-                                                        case 4:
-                                                            // Exit Employee CRUD
-                                                            exitEmployeeCrudCase = true;
-                                                            break;
-                                                        default:
-                                                            System.out.println("Invalid choice");
-                                                    }
-                                                }
-                                                break;
-                                            case 2:
                                                 // Job Posting
                                                 scanner.nextLine();
                                                 System.out.println("Enter your gmail : ");
@@ -319,7 +263,7 @@ public class Main {
                                                     }
                                                 }
                                                 break;
-                                            case 3:
+                                            case 2:
                                                 goback2 = false;
                                                 break;
                                             default:

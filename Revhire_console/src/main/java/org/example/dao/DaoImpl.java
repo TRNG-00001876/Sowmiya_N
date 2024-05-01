@@ -8,8 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class DaoImpl implements Dao {
     private static DaoImpl instance;
@@ -201,46 +200,5 @@ public class DaoImpl implements Dao {
         return null;
     }
 
-    //employee crud
-
-    @Override
-    public boolean addEmployee(Employeereg employee) {
-        String query = "INSERT INTO Employees (empname, empemail, emppassword) VALUES (?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, employee.getEmpname());
-            preparedStatement.setString(2, employee.getEmpemail());
-            preparedStatement.setString(3, employee.getEmppassword());
-            return preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    @Override
-    public boolean updateEmployee(Employeereg employee) {
-        String query = "UPDATE Employees SET empname=?, emppassword=? WHERE empemail=?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, employee.getEmpname());
-            preparedStatement.setString(2, employee.getEmppassword());
-            preparedStatement.setString(3, employee.getEmpemail());
-            return preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    @Override
-    public boolean deleteEmployee(String email) {
-        String query = "DELETE FROM Employees WHERE empemail=?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, email);
-            return preparedStatement.executeUpdate() > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 }
 
