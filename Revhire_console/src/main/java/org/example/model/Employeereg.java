@@ -35,5 +35,7 @@ public class Employeereg {
     public void setEmpemail(String empemail) {
         this.empemail = empemail;
     }
+
+
 }
 

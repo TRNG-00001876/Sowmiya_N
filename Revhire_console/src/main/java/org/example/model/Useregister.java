@@ -5,10 +5,10 @@ public class Useregister {
     private String Password;
     private String Email;
 
-    public Useregister( String Username, String Password,String Email) {
+    public Useregister( String Username, String Email,String Password) {
         this.Username = Username;
-        this.Password = Password;
         this.Email= Email;
+        this.Password = Password;
     }
 
 

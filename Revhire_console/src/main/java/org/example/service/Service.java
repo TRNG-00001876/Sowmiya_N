@@ -3,7 +3,10 @@ package org.example.service;
 import org.example.dao.Dao;
 import org.example.model.Employeereg;
 import org.example.model.Useregister;
+import org.example.model.Resume;
 import org.example.model.Jobposting;
+
+import java.util.List;
 
 public class Service {
     private Dao dao;
@@ -46,5 +49,39 @@ public class Service {
     public boolean isValidusername(String validusername){
         return dao.isValidusername(validusername);
     }
+
+    //resume
+
+    public boolean addResume(Resume resume, String userEmail) {
+        return dao.addResume(resume, userEmail);
+    }
+
+    public boolean updateResume(Resume resume, String userEmail) {
+        return dao.updateResume(resume, userEmail);
+    }
+
+    public boolean deleteResume(String userEmail) {
+        return dao.deleteResume(userEmail);
+    }
+
+    public Resume getResume(String userEmail) {
+        return dao.getResume(userEmail);
+    }
+
+
+    //employee crud
+
+    public boolean addEmployee(Employeereg employee) {
+        return dao.addEmployee(employee);
+    }
+
+    public boolean updateEmployee(Employeereg employee) {
+        return dao.updateEmployee(employee);
+    }
+
+    public boolean deleteEmployee(String email) {
+        return dao.deleteEmployee(email);
+    }
+
 
 }

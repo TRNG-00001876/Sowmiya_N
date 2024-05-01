@@ -1,7 +1,9 @@
 package org.example.dao;
 import org.example.model.Employeereg;
+import org.example.model.Resume;
 import org.example.model.Useregister;
 import org.example.model.Jobposting;
+import java.util.List;
 
 public interface Dao {
     void userDetails(Useregister useregister);
@@ -12,4 +14,14 @@ public interface Dao {
     boolean isValidpassword(String validpassword);
     boolean isValidemail(String validemail);
     boolean isValidusername(String validusername);
+    //resume crud
+    boolean addResume(Resume resume, String userEmail);
+    boolean updateResume(Resume resume, String userEmail);
+    boolean deleteResume(String userEmail);
+    Resume getResume(String userEmail);
+
+    //employee crud
+    boolean addEmployee(Employeereg employee);
+    boolean updateEmployee(Employeereg employee);
+    boolean deleteEmployee(String empemail);
 }
