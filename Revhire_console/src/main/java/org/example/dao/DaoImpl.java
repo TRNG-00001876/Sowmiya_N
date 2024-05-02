@@ -76,8 +76,8 @@ public class DaoImpl implements Dao {
             preparedStatement.setString(2, vpassword);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                String one = resultSet.getString("vemail");
-                String two = resultSet.getString("vpassword");
+                String one = resultSet.getString("Email");
+                String two = resultSet.getString("Password");
                 if ((vemail == one) && (vpassword == two)) {
                     return true;
                 }
@@ -121,8 +121,8 @@ public class DaoImpl implements Dao {
             preparedStatement.setString(2, vemppassword);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                String one = resultSet.getString("vempemail");
-                String two = resultSet.getString("vemppassword");
+                String one = resultSet.getString("empemail");
+                String two = resultSet.getString("emppassword");
                 if ((vempemail == one) && (vemppassword == two)) {
                     return true;
                 }

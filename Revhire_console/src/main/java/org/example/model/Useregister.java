@@ -2,8 +2,8 @@ package org.example.model;
 
 public class Useregister {
     private String Username;
-    private String Password;
     private String Email;
+    private String Password;
 
     public Useregister( String Username, String Email,String Password) {
         this.Username = Username;

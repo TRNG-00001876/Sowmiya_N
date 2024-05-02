@@ -6,7 +6,6 @@ import org.example.model.Useregister;
 import org.example.model.Resume;
 import org.example.model.Jobposting;
 
-import java.util.List;
 
 public class Service {
     private Dao dao;

@@ -97,7 +97,7 @@ public class Main {
                                             System.out.println("5) Exit");
                                             int choicethis = scanner.nextInt();
                                             switch (choicethis) {
-                                                case 1:
+                                                case 1: scanner.nextLine();
                                                     // Create Resume
                                                     System.out.println("Enter your location: ");
                                                     String location = scanner.nextLine();
@@ -111,7 +111,7 @@ public class Main {
                                                     service.addResume(resume, vemail);
                                                     System.out.println("Resume created successfully!");
                                                     break;
-                                                case 2:
+                                                case 2: scanner.nextLine();
                                                     // Update Resume
                                                     System.out.println("Enter the new location: ");
                                                     String newLocation = scanner.nextLine();
@@ -125,12 +125,12 @@ public class Main {
                                                     service.updateResume(updatedResume, vemail);
                                                     System.out.println("Resume updated successfully!");
                                                     break;
-                                                case 3:
+                                                case 3: scanner.nextLine();
                                                     // Delete Resume
                                                     service.deleteResume(vemail);
                                                     System.out.println("Resume deleted successfully!");
                                                     break;
-                                                case 4:
+                                                case 4: scanner.nextLine();
                                                     // View Resume
                                                     Resume viewedResume = service.getResume(vemail);
                                                     if (viewedResume != null) {
@@ -211,6 +211,7 @@ public class Main {
 
                                     Employeereg employeereg = new Employeereg(empname, emppassword, empemail);
                                     service.employeeDetails(employeereg);
+                                    System.out.println("Employee added successfully!");
                                     break;
                                 case 2:
                                     boolean exitEmployeeCrud = true;
@@ -221,73 +222,45 @@ public class Main {
                                         int option = scanner.nextInt();
                                         switch (option) {
                                             case 1:
-                                                // Job Posting
                                                 scanner.nextLine();
-                                                System.out.println("Enter your gmail : ");
-                                                String vempemail = scanner.nextLine();
-                                                System.out.println("Enter your password :");
-                                                String vemppassword = scanner.nextLine();
-                                                if (service.validateemployee(vempemail, vemppassword)) {
-                                                    System.out.println("Login is successfull");
-                                                    if (service.validateUser(vempemail, vemppassword)) {
-                                                        System.out.println("Sucessfully Login");
-                                                        boolean exitthis = true;
-                                                        while (exitthis) {
-                                                            System.out.println("1) Create Job Posting");
-                                                            System.out.println("2) Exit");
-                                                            int choicethis = scanner.nextInt();
-                                                            switch (choicethis) {
-                                                                case 1:
-                                                                    scanner.nextLine();
-                                                                    System.out.println("Enter the company name");
-                                                                    String Compname = scanner.nextLine();
-                                                                    System.out.println("Enter the company location");
-                                                                    String Comploc = scanner.nextLine();
-                                                                    System.out.println("Enter the job skill requirement");
-                                                                    String Jobskill = scanner.nextLine();
-                                                                    System.out.println("Enter the experience needed");
-                                                                    int Expneed = scanner.nextInt();
-                                                                    // Create job posting object
-                                                                    Jobposting jobposting = new Jobposting(Compname, Comploc, Jobskill, Expneed);
-                                                                    // Add job posting
-                                                                    service.jobDetails(jobposting);
-                                                                    System.out.println("Job posting created successfully!");
-                                                                    break;
-                                                                case 2:
-                                                                    exitthis = false;
-                                                                    break;
-                                                                default:
-                                                                    System.out.println("Invalid choice");
-                                                            }
-                                                        }
-                                                    }
-                                                }
+                                                System.out.println("Enter the company name");
+                                                String Compname = scanner.nextLine();
+                                                System.out.println("Enter the company location");
+                                                String Comploc = scanner.nextLine();
+                                                System.out.println("Enter the job skill requirement");
+                                                String Jobskill = scanner.nextLine();
+                                                System.out.println("Enter the experience needed");
+                                                int Expneed = scanner.nextInt();
+                                                // Create job posting object
+                                                Jobposting jobposting = new Jobposting(Compname, Comploc, Jobskill, Expneed);
+                                                // Add job posting
+                                                service.jobDetails(jobposting);
+                                                System.out.println("Job posting created successfully!");
                                                 break;
                                             case 2:
-                                                goback2 = false;
+                                                exitEmployeeCrud = false;
                                                 break;
                                             default:
                                                 System.out.println("Invalid choice");
                                         }
                                     }
                                     break;
-
                                 case 3:
                                     goback2 = false;
                                     break;
-                            }
                         }
-                        break;
-                    case 3:
-                        exit = false;
-                        break;
-                    default:
-                        System.out.println("Invalid choice");
                 }
+                break;
+                case 3:
+                    exit = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+}
 }
 
