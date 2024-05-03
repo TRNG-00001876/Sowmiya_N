@@ -6,6 +6,8 @@ import org.example.model.Useregister;
 import org.example.model.Resume;
 import org.example.model.Jobposting;
 
+import java.util.List;
+
 
 public class Service {
     private Dao dao;
@@ -48,7 +50,24 @@ public class Service {
     public boolean isValidusername(String validusername){
         return dao.isValidusername(validusername);
     }
+    //valid string
 
+    public  boolean validString(String details){
+        return dao.validString(details);
+    }
+
+    public boolean validInt(int detail){
+        return dao.validInt(detail);
+    }
+
+    //search job
+    public List<Jobposting> getAllJobPostings() {
+        return dao.getAllJobPostings();
+    }
+
+    public List<Jobposting> getFilteredJobPostings(String filterCriteria) {
+        return dao.getFilteredJobPostings(filterCriteria);
+    }
     //resume
 
     public boolean addResume(Resume resume, String userEmail) {

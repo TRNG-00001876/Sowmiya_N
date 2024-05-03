@@ -4,6 +4,8 @@ import org.example.model.Resume;
 import org.example.model.Useregister;
 import org.example.model.Jobposting;
 
+import java.util.List;
+
 
 public interface Dao {
     void userDetails(Useregister useregister);
@@ -14,6 +16,12 @@ public interface Dao {
     boolean isValidpassword(String validpassword);
     boolean isValidemail(String validemail);
     boolean isValidusername(String validusername);
+    //search job
+    List<Jobposting> getAllJobPostings();
+    List<Jobposting> getFilteredJobPostings(String filterCriteria);
+    //validation string for jobposting
+    boolean validString(String details);
+    boolean validInt(int detail);
     //resume crud
     boolean addResume(Resume resume, String userEmail);
     boolean updateResume(Resume resume, String userEmail);

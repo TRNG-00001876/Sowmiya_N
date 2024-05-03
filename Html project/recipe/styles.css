@@ -1,0 +1,46 @@
+
+header {
+    background: linear-gradient(to right,  #99e8f8, #3b5c60);
+    text-align: center;
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+
+#featured-recipes {
+    margin-top: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+    
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+ul li {
+    margin-bottom: 10px;
+}

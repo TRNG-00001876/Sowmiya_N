@@ -46,4 +46,6 @@ public class Jobposting {
     public void setExpneed(int Expneed) {
         this.Expneed = Expneed;
     }
+
+
 }

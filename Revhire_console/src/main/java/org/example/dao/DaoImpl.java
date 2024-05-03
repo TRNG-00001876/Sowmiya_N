@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DaoImpl implements Dao {
@@ -132,6 +134,79 @@ public class DaoImpl implements Dao {
             e.printStackTrace();
         }
         return false;
+    }
+
+    //validate string,int for jobposting
+    @Override
+    public boolean validString(String details)
+    {
+        if(details==null ||details.isEmpty())
+        {
+            return  false;
+        }
+        for(char c:details.toCharArray())
+        {
+            if(! Character.isLetter(c) || c==' ' || c=='/' || c==',' || c=='-')
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean validInt(int detail){
+        String detailPattern = "^(?:100|[1-9]?[0-9])$";
+        String detailString = Integer.toString(detail); // Convert int to String
+        return detailString.matches(detailPattern);
+    }
+
+    //search job
+    @Override
+    public List<Jobposting> getAllJobPostings() {
+        List<Jobposting> jobPostings = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Jobposting");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Jobposting jobPosting = new Jobposting(
+                        resultSet.getString("Compname"),
+                        resultSet.getString("Comploc"),
+                        resultSet.getString("Jobskill"),
+                        resultSet.getInt("Expneed")
+                );
+                jobPostings.add(jobPosting);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return jobPostings;
+    }
+
+    @Override
+    public List<Jobposting> getFilteredJobPostings(String filterCriteria) {
+        List<Jobposting> filteredJobPostings = new ArrayList<>();
+        String query = "SELECT * FROM Jobposting WHERE Compname LIKE ? OR Comploc LIKE ? OR Jobskill LIKE ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, "%" + filterCriteria + "%");
+            preparedStatement.setString(2, "%" + filterCriteria + "%");
+            preparedStatement.setString(3, "%" + filterCriteria + "%");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String compname = resultSet.getString("Compname");
+                String comploc = resultSet.getString("Comploc");
+                String jobskill = resultSet.getString("Jobskill");
+                int expneed = resultSet.getInt("Expneed");
+
+                // Create a Jobposting object and add it to the list
+                Jobposting jobPosting = new Jobposting(compname, comploc, jobskill, expneed);
+                filteredJobPostings.add(jobPosting);
+            }
+        } catch (SQLException e) {
+            // Handle any SQL exceptions here
+            e.printStackTrace();
+        }
+        return filteredJobPostings;
     }
 
     //resume
