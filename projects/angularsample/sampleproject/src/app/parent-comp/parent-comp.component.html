@@ -1,0 +1,7 @@
+<p>parent-component works!</p>
+<button (click)="increment()">Increment</button>
+<br>
+<button (click)="decrement()">Decrement</button>
+<br>
+<h1>{{message}}</h1>
+<app-child-comp [count_child]=count  (btn_click)="handlechild($event)"  ></app-child-comp>
